@@ -10,7 +10,7 @@ Il progetto fase 1 e' stato implementato e costruito usando il processo iterativ
 Ogni fase del progetto e' stata infatti suddivisa in una fetta composta da: 
 - una parte del DB. (come ad esempio la sezione dedicata agli utenti)
 - le rispettive operazioni CRUD
-- e le rispettive e moduli delle pagine del frontend.
+- e le rispettive parti nelle pagine del frontend.
 La gestione a slice del progetto ha garantito velocita' nella programmazione e soprattutto la possibilita' di testare velocemente le varie parti sviluppate.
 Una parte di grande complessita' e' stata trovare la giuste template che, soprattutto per il caso del frontend, ha causato il cambio di dominio del sito dopo un primo tentativo.
 La scelta delle template infine e' ricaduta su:
