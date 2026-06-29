@@ -1,0 +1,137 @@
+<!-- Hero Section -->
+<div class="row g-4 mb-5 align-items-center">
+    <div class="col-lg-6">
+        <[if!empty if_logged]>
+            <h1 class="display-3 text-primary fw-bold">Bentornato, <[logged_user_name]>!</h1>
+            <p class="fs-4 text-muted">È un piacere rivederti. Sei pronto per una nuova lettura? Scopri le ultime novità selezionate per te.</p>
+        <[/if!empty]>
+
+        <[ifempty if_logged]>
+            <h1 class="display-3 text-secondary fw-bold">Il tuo prossimo libro ti aspetta.</h1>
+            <p class="fs-5 text-muted">
+                Dalle nuove uscite ai grandi classici, abbiamo tutto ciò che ti serve per non fermarti mai.
+                Naviga facilmente tra migliaia di titoli e trova la tua prossima ossessione letteraria.
+            </p>
+            <div class="d-flex gap-3 mt-4">
+                <a href="books.php" class="btn btn-primary btn-lg rounded-pill px-5">Esplora</a>
+                <a href="login.php" class="btn btn-outline-secondary btn-lg rounded-pill px-5">Accedi</a>
+            </div>
+        <[/ifempty]>
+    </div>
+    <div class="col-lg-6">
+        <img src="../../skins/frontend/Fruitables/img/hero-img.jpg" class="img-fluid rounded-3 shadow-lg" alt="Bookstore Hero" onerror="this.src='https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80'">
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="row g-4 mb-5 py-5 border-top border-bottom">
+    <div class="col-md-3 text-center">
+        <i class="fas fa-truck fa-3x text-primary mb-3"></i>
+        <h5 class="fw-bold">Spedizione Gratuita</h5>
+        <p class="small text-muted">Per ordini superiori a €29</p>
+    </div>
+    <div class="col-md-3 text-center">
+        <i class="fas fa-undo fa-3x text-primary mb-3"></i>
+        <h5 class="fw-bold">Reso Facile</h5>
+        <p class="small text-muted">Entro 30 giorni</p>
+    </div>
+    <div class="col-md-3 text-center">
+        <i class="fas fa-lock fa-3x text-primary mb-3"></i>
+        <h5 class="fw-bold">Pagamento Sicuro</h5>
+        <p class="small text-muted">SSL 128-bit Encryption</p>
+    </div>
+    <div class="col-md-3 text-center">
+        <i class="fas fa-headset fa-3x text-primary mb-3"></i>
+        <h5 class="fw-bold">Supporto 24/7</h5>
+        <p class="small text-muted">Sempre al tuo fianco</p>
+    </div>
+</div>
+
+<!-- Categories Section -->
+<div class="row g-4 mb-5">
+    <div class="col-12 text-center mb-4">
+        <h2 class="display-5 fw-bold">Sfoglia per Categoria</h2>
+    </div>
+    <div class="col-12">
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+            <[foreach]>
+            <a href="shop.php?category=<[cat_id]>" class="btn btn-outline-secondary rounded-pill px-4 py-2">
+                <[cat_name]>
+            </a>
+            <[/foreach]>
+        </div>
+    </div>
+</div>
+
+<!-- Featured Books -->
+<div class="row g-4 mb-5">
+    <div class="col-12 d-flex justify-content-between align-items-end mb-4">
+        <div>
+            <h2 class="display-5 fw-bold mb-0">Libri in Evidenza</h2>
+            <p class="text-muted mb-0">La nostra selezione curata per te</p>
+        </div>
+        <a href="shop.php" class="btn btn-link text-primary fw-bold">Vedi tutti <i class="fas fa-arrow-right ms-1"></i></a>
+    </div>
+
+    <[foreach]>
+    <div class="col-md-6 col-lg-4 col-xl-3">
+        <div class="card h-100 border-0 shadow-sm hover-elevate overflow-hidden">
+            <div class="position-relative">
+                <img src="<[book_image]>" class="card-img-top" alt="<[book_title]>" style="height: 300px; object-fit: cover;">
+                <div class="position-absolute top-0 start-0 m-3">
+                    <span class="badge bg-primary rounded-pill"><[book_author]></span>
+                </div>
+            </div>
+            <div class="card-body d-flex flex-column p-4">
+                <h5 class="card-title fw-bold mb-3"><[book_title]></h5>
+                <div class="mt-auto d-flex justify-content-between align-items-center">
+                    <span class="fs-4 fw-bold text-dark">€ <[book_price]></span>
+                    <a href="book.php?id=<[book_id]>" class="btn btn-sm btn-outline-primary rounded-pill px-3">
+                        Dettagli
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <[/foreach]>
+</div>
+
+<!-- New Arrivals -->
+<div class="row g-4 mb-5 bg-light p-5 rounded-3">
+    <div class="col-12 text-center mb-5">
+        <h2 class="display-5 fw-bold">Nuovi Arrivi</h2>
+        <p class="text-muted">Le ultime novità appena caricate</p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+        <[foreach]>
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100 p-3">
+                <div class="row g-0 h-100 align-items-center">
+                    <div class="col-4">
+                        <img src="<[latest_image]>" class="img-fluid rounded" alt="<[latest_title]>" style="max-height: 180px; width: 100%; object-fit: cover;">
+                    </div>
+                    <div class="col-8">
+                        <div class="card-body">
+                            <h6 class="text-primary text-uppercase small mb-1"><[latest_author]></h6>
+                            <h5 class="fw-bold mb-2"><[latest_title]></h5>
+                            <p class="text-dark fw-bold mb-3">€ <[latest_price]></p>
+                            <a href="book.php?id=<[latest_id]>" class="btn btn-sm btn-primary rounded-pill">Acquista Ora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <[/foreach]>
+    </div>
+</div>
+
+<style>
+    .hover-elevate {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-elevate:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+    }
+</style>

@@ -1,0 +1,67 @@
+<div class="row g-4">
+    <!-- Sidebar filtri -->
+    <div class="col-lg-3">
+        <div class="row g-4">
+            <div class="col-lg-12">
+                <div class="mb-4">
+                    <h4 class="mb-3">Categorie</h4>
+                    <ul class="list-unstyled fruite-categorie">
+                        <li>
+                            <div class="d-flex justify-content-between fruite-name">
+                                <a href="shop.php"><i class="fas fa-book me-2"></i>Tutti i libri</a>
+                            </div>
+                        </li>
+                        <[foreach]>
+                        <li>
+                            <div class="d-flex justify-content-between fruite-name">
+                                <a href="shop.php?category=<[cat_id]>"><i class="fas fa-book me-2"></i><[cat_name]></a>
+                            </div>
+                        </li>
+                        <[/foreach]>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="mb-3">
+                    <form action="shop.php" method="GET">
+                        <[keep_category]>
+                        <h4 class="mb-2">Cerca Libro</h4>
+                        <div class="input-group">
+                            <input type="text" name="search" value="<[search_value]>" class="form-control" placeholder="Titolo o autore...">
+                            <button class="btn btn-secondary text-white" type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Griglia libri -->
+    <div class="col-lg-9">
+        <[active_filter_html]>
+
+        <div class="row g-4 justify-content-start">
+            <[foreach]>
+            <div class="col-md-6 col-lg-6 col-xl-4">
+                <div class="rounded position-relative fruite-item border border-secondary h-100 d-flex flex-column">
+                    <div class="fruite-img">
+                        <img src="<[book_image]>" class="img-fluid w-100 rounded-top" alt="<[book_title]>" style="height: 220px; object-fit: cover;">
+                    </div>
+                    <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px; font-size: 0.8rem;"><[book_author]></div>
+                    <div class="p-4 border border-secondary border-top-0 rounded-bottom d-flex flex-column flex-grow-1">
+                        <h4 style="font-size: 1rem; line-height: 1.3;"><[book_title]></h4>
+                        <div class="d-flex justify-content-between align-items-center mt-auto flex-wrap gap-2">
+                            <p class="text-dark fs-5 fw-bold mb-0">€<[book_price]></p>
+                            <a href="book.php?id=<[book_id]>" class="btn border border-secondary rounded-pill px-3 text-primary">
+                                <i class="fa fa-eye me-2 text-primary"></i>Dettagli
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <[/foreach]>
+
+            <[no_results_html]>
+        </div>
+    </div>
+</div>

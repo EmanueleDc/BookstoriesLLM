@@ -1,0 +1,32 @@
+<div class="row g-4">
+    <div class="col-lg-4">
+        <div class="bg-white shadow rounded p-4">
+            <h3 class="mb-3">Il tuo profilo</h3>
+            <p><strong>Nome:</strong> <[user_name]></p>
+            <p><strong>Username:</strong> <[user_username]></p>
+            <p><strong>Email:</strong> <[user_email]></p>
+            <p><strong>Registrato il:</strong> <[user_created_at]></p>
+            <a href="logout.php" class="btn btn-danger mt-3">Esci</a>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="bg-white shadow rounded p-4">
+            <h3 class="mb-4">I tuoi ordini</h3>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Ordine</th>
+                            <th>Totale</th>
+                            <th>Stato</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <[orders_html]>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

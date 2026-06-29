@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>BookStories</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="../../skins/frontend/Fruitables/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="../../skins/frontend/Fruitables/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../../skins/frontend/Fruitables/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="../../skins/frontend/Fruitables/css/style.css" rel="stylesheet">
+
+    <!-- Refinements -->
+    <style>
+        :root {
+            --bx-gold: #e2af18;
+            --bx-ink: #1c2541;
+        }
+
+        /* Navbar: leggera elevazione e micro-interazioni */
+        .container-fluid.fixed-top {
+            box-shadow: 0 10px 30px rgba(28, 37, 65, .08);
+        }
+        .navbar .nav-link {
+            position: relative;
+            font-weight: 600;
+            padding-bottom: .35rem;
+        }
+        .navbar .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 2px;
+            background: var(--bx-gold);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .25s ease;
+        }
+        .navbar .nav-link:hover::after,
+        .navbar .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
+        /* Pulsante di ricerca */
+        .btn-search {
+            transition: background .2s ease, transform .2s ease, border-color .2s ease;
+        }
+        .btn-search:hover {
+            background: var(--bx-gold) !important;
+            border-color: var(--bx-gold) !important;
+            transform: translateY(-1px);
+        }
+        .btn-search:hover i {
+            color: #ffffff !important;
+        }
+
+        /* Carrello */
+        a[href="cart.php"] .fa-shopping-bag {
+            transition: transform .2s ease;
+        }
+        a[href="cart.php"]:hover .fa-shopping-bag {
+            transform: translateY(-2px);
+        }
+        a[href="cart.php"] span.position-absolute {
+            background: var(--bx-gold) !important;
+            color: var(--bx-ink) !important;
+            font-weight: 700;
+            font-size: .7rem;
+        }
+
+        /* Logout: maiuscolo con respiro tra le lettere */
+        .navbar .btn-outline-danger {
+            letter-spacing: .04em;
+        }
+
+        /* Brand e icona ricerca, ancorate al colore oro già usato nel footer */
+        .navbar-brand .text-primary {
+            color: var(--bx-ink) !important;
+        }
+        .btn-search i.text-primary {
+            color: var(--bx-ink) !important;
+        }
+
+        /* Modal di ricerca */
+        #searchModal .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(226, 175, 24, .25);
+            border-color: var(--bx-gold);
+        }
+        #searchModal .input-group-text {
+            background: var(--bx-ink);
+            color: #ffffff;
+            border-color: var(--bx-ink);
+            transition: background .2s ease;
+        }
+        #searchModal .input-group-text:hover {
+            background: var(--bx-gold);
+            color: var(--bx-ink);
+        }
+
+        /* Fascia di fiducia nel footer */
+        .trust-badges .trust-item {
+            display: flex;
+            align-items: center;
+            gap: .65rem;
+        }
+        .trust-badges .trust-item i {
+            font-size: 1.35rem;
+            color: var(--bx-gold);
+        }
+        .trust-badges .trust-item span {
+            font-size: .85rem;
+            color: rgba(255, 255, 255, .75);
+        }
+
+        /* Social nel footer */
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, .18);
+            color: #ffffff;
+            margin-right: .5rem;
+            transition: background .2s ease, border-color .2s ease, transform .2s ease;
+        }
+        .footer-social a:hover {
+            background: var(--bx-gold);
+            border-color: var(--bx-gold);
+            color: var(--bx-ink);
+            transform: translateY(-2px);
+        }
+
+        /* Back to top */
+        .back-to-top.btn-primary {
+            background: var(--bx-gold) !important;
+            border-color: var(--bx-gold) !important;
+            color: var(--bx-ink) !important;
+            box-shadow: 0 10px 25px rgba(226, 175, 24, .4);
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .back-to-top.btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(226, 175, 24, .5);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="index.php" class="navbar-brand">
+                    <h1 class="text-primary display-6">BookStories</h1>
+                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                        <a href="index.php" class="nav-item nav-link">Home</a>
+                        <a href="shop.php" class="nav-item nav-link">Shop</a>
+                        <a href="cart.php" class="nav-item nav-link">Cart</a>
+                        <a href="checkout.php" class="nav-item nav-link">Checkout</a>
+                    </div>
+                    <div class="d-flex m-3 me-0">
+                        <button
+                            class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
+                            data-bs-toggle="modal" data-bs-target="#searchModal"><i
+                                class="fas fa-search text-primary"></i></button>
+                        <a href="cart.php" class="position-relative me-4 my-auto">
+                            <i class="fa fa-shopping-bag fa-2x"></i>
+                            <span
+                                class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
+                                style="top: -5px; left: 15px; height: 20px; min-width: 20px;">
+                                <[cart_count]>
+                            </span>
+                        </a>
+
+                        <[if!empty if_admin]>
+                            <a href="../admin/dashboard.php" class="my-auto me-4" title="Pannello Admin">
+                                <i class="fas fa-user-cog fa-2x"></i>
+                            </a>
+                            <[/if!empty]>
+
+                                <[if!empty if_logged]>
+                                    <a href="profile.php" class="my-auto me-4" title="Profilo">
+                                        <i class="fas fa-user fa-2x text-primary"></i>
+                                    </a>
+
+                                    <a href="logout.php" class="my-auto btn btn-outline-danger btn-sm border-2 fw-bold">
+                                        LOGOUT
+                                    </a>
+                                    <[/if!empty]>
+
+                                        <[ifempty if_logged]>
+                                            <a href="login.php" class="my-auto" title="Login">
+                                                <i class="fas fa-user fa-2x"></i>
+                                            </a>
+                                            <[/ifempty]>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Modal Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content rounded-0">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cerca un libro o un autore</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center">
+                    <div class="input-group w-75 mx-auto d-flex">
+                        <form action="shop.php" method="GET" class="d-flex w-100">
+                            <input type="search" name="search" class="form-control p-3" placeholder="Titolo, autore..."
+                                aria-describedby="search-icon-1">
+                            <button type="submit" id="search-icon-1" class="input-group-text p-3"><i
+                                    class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Search End -->
+
+    <!-- Page Content Start -->
+    <div class="container-fluid py-5 mt-5">
+        <div class="container py-5">
+            <[flash]>
+                <[page_content]>
+        </div>
+    </div>
+    <!-- Page Content End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
+        <div class="container py-5">
+
+            <!-- Fascia superiore: brand + fascia di fiducia -->
+            <div class="pb-4 mb-4" style="border-bottom: 1px solid rgba(226, 175, 24, 0.5);">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-5">
+                        <a href="#" class="text-decoration-none">
+                            <h1 class="text-primary mb-0">BookStories</h1>
+                            <p class="text-secondary mb-0">books for all</p>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-7">
+                        <div class="trust-badges row g-3">
+                            <div class="col-sm-4">
+                                <div class="trust-item">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Acquisti sicuri</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="trust-item">
+                                    <i class="fas fa-lock"></i>
+                                    <span>Pagamenti protetti</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="trust-item">
+                                    <i class="fas fa-headset"></i>
+                                    <span>Assistenza dedicata</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colonne di navigazione -->
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="d-flex flex-column text-start footer-item">
+                        <h4 class="text-light mb-3">Link Utili</h4>
+                        <a class="btn-link" href="index.php">Home</a>
+                        <a class="btn-link" href="shop.php">Shop</a>
+                        <a class="btn-link" href="cart.php">Carrello</a>
+                        <a class="btn-link" href="checkout.php">Checkout</a>
+                        <a class="btn-link" href="login.php">Login / Registrati</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-item">
+                        <h4 class="text-light mb-3">Contatti</h4>
+                        <p>Country: Roma, Italy</p>
+                        <p>Email: edcedcedc@gmail.com</p>
+                        <p>Phone: +0123 4567 8910</p>
+                        <p>Payment Accepted</p>
+                        <img src="../../skins/frontend/Fruitables/img/payment.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-item">
+                        <h4 class="text-light mb-3">Seguici</h4>
+                        <p class="mb-3">Resta aggiornato su novità e uscite.</p>
+                        <div class="footer-social">
+                            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" title="X / Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <span class="text-light"><a href="#"><i class="fas fa-copyright text-light me-2"></i>Bookstore
+                            EDC</a>, All right reserved.</span>
+                </div>
+                <div class="col-md-6 my-auto text-center text-md-end text-white">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i
+            class="fa fa-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../skins/frontend/Fruitables/lib/easing/easing.min.js"></script>
+    <script src="../../skins/frontend/Fruitables/lib/waypoints/waypoints.min.js"></script>
+    <script src="../../skins/frontend/Fruitables/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="../../skins/frontend/Fruitables/lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../../skins/frontend/Fruitables/js/main.js"></script>
+</body>
+
+</html>

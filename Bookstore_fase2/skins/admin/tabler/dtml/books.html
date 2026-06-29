@@ -1,0 +1,27 @@
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Catalogo Libri</h3>
+        <div class="card-actions">
+            <a href="book_edit.php" class="btn btn-primary">
+                + Aggiungi Nuovo Libro
+            </a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table card-table table-vcenter text-nowrap datatable">
+            <thead>
+                <tr>
+                    <th class="w-1">ID</th>
+                    <th>Titolo</th>
+                    <th>ISBN</th>
+                    <th>Prezzo</th>
+                    <th>Stock</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <[books_list_html]>
+            </tbody>
+        </table>
+    </div>
+</div>

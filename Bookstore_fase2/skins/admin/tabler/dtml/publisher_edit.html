@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title"><[form_title]></h3>
+    </div>
+
+    <[error_message_html]>
+
+    <div class="card-body">
+        <form action="publisher_edit.php<[query_string]>" method="POST">
+            <input type="hidden" name="id" value="<[publisher_id]>">
+
+            <div class="mb-3">
+                <label class="form-label required">Nome Editore</label>
+                <input type="text" class="form-control" name="name" value="<[publisher_name]>" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Sito Web</label>
+                <input type="url" class="form-control" name="website" value="<[publisher_website]>" placeholder="https://example.com">
+            </div>
+
+            <div class="form-footer text-end">
+                <a href="publishers.php" class="btn btn-link">Annulla</a>
+                <button type="submit" class="btn btn-primary">Salva Editore</button>
+            </div>
+        </form>
+    </div>
+</div>

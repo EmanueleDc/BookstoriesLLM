@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title"><[form_title]></h3>
+    </div>
+
+    <[error_message_html]>
+
+    <div class="card-body">
+        <form action="author_edit.php<[query_string]>" method="POST">
+            <input type="hidden" name="id" value="<[author_id]>">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label required">Nome</label>
+                        <input type="text" class="form-control" name="first_name" value="<[author_first_name]>" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label class="form-label required">Cognome</label>
+                        <input type="text" class="form-control" name="last_name" value="<[author_last_name]>" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Biografia</label>
+                <textarea class="form-control" name="biography" rows="5"><[author_biography]></textarea>
+            </div>
+
+            <div class="form-footer text-end">
+                <a href="authors.php" class="btn btn-link">Annulla</a>
+                <button type="submit" class="btn btn-primary">Salva Autore</button>
+            </div>
+        </form>
+    </div>
+</div>

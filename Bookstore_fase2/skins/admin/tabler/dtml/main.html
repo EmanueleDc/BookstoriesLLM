@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <title>Dashboard Amministrazione - Bookstories</title>
+    <!-- Css Tabler -->
+    <link href="../../skins/admin/tabler/dist/css/tabler.min.css" rel="stylesheet"/>
+    <style>
+        body { background: #eff2f7; }
+        .page { min-height: 100vh; }
+        .navbar-vertical { background: linear-gradient(180deg,#0d6efd 0%,#6610f2 100%); }
+        .navbar-brand, .navbar-nav .nav-link { color: #ffffff; text-shadow: 0 1px 2px rgba(0,0,0,.35); }
+        .navbar-nav .nav-link { font-weight: 500; }
+        .navbar-nav .nav-link:hover, .navbar-nav .nav-link.active { color: #ffffff; background: rgba(255,255,255,.18); border-radius: .75rem; }
+        .navbar-vertical { box-shadow: 4px 0 18px rgba(0,0,0,.08); }
+        .page-header { background: linear-gradient(135deg,#ffffff 0%,#e7f1ff 100%); border-radius: 1rem; padding: 1.5rem; box-shadow: 0 20px 45px rgba(15,23,42,.08); margin-bottom: 1rem; }
+        .card { border: 0; box-shadow: 0 18px 40px rgba(15,23,42,.06); }
+        .card-header { background: #ffffff; border-bottom: 1px solid #e9ecef; }
+        .card-title { font-weight: 700; }
+        .stamp.badge-yellow { background: #f59e0b !important; color: #ffffff !important; }
+        .stamp.badge-blue { background: #0d6efd !important; color: #ffffff !important; }
+        .stamp.badge-green { background: #20c997 !important; color: #ffffff !important; }
+        .stamp.badge-red { background: #dc3545 !important; color: #ffffff !important; }
+        .table thead th { border-bottom: 2px solid #dee2e6; }
+
+        /* Toggler menu mobile */
+        .navbar-toggler {
+            border: 0;
+            color: #ffffff;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255,255,255,0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                background: rgba(0,0,0,.12);
+                border-radius: .75rem;
+                margin-top: .5rem;
+                padding: .5rem;
+            }
+        }
+
+        /* Pulsante "Torna al sito" - stile glass, professionale */
+        .btn-back-site {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .5rem;
+            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255,255,255,.22);
+            color: #ffffff !important;
+            font-weight: 600;
+            font-size: .875rem;
+            border-radius: .65rem;
+            padding: .6rem 1rem;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+            text-shadow: none;
+        }
+        .btn-back-site:hover {
+            background: rgba(255,255,255,.22);
+            color: #ffffff !important;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(0,0,0,.25);
+        }
+        .btn-back-site:active {
+            transform: translateY(0);
+        }
+
+        /* Footer della sidebar verticale, visibile solo da lg in su (navbar a sinistra) */
+        .navbar-vertical-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 1.25rem 1.25rem;
+            border-top: 1px solid rgba(255,255,255,.15);
+        }
+        .navbar-vertical-footer .btn-back-site {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="page">
+        <!-- Sidebar -->
+        <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Apri/chiudi menu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a href="dashboard.php" class="navbar-brand">
+                    Bookstories Admin
+                </a>
+
+                <!-- Visibile solo su mobile/tablet, quando la sidebar è in alto -->
+                <div class="d-flex ms-auto align-items-center d-lg-none">
+                    <a href="../../pages/frontend/index.php" class="btn-back-site">
+                        <i class="fa fa-arrow-left"></i> Torna al sito
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="sidebar-menu">
+                    <ul class="navbar-nav pt-lg-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="dashboard.php">
+                                <span class="nav-link-title">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="books.php">
+                                <span class="nav-link-title">Gestione Libri</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="authors.php">
+                                <span class="nav-link-title">Gestione Autori</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="publishers.php">
+                                <span class="nav-link-title">Gestione Editori</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="categories.php">
+                                <span class="nav-link-title">Gestione Generi</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="users.php">
+                                <span class="nav-link-title">Utenti e Gruppi</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="orders.php">
+                                <span class="nav-link-title">Ordini</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Visibile solo da lg in su, quando la sidebar è verticale a sinistra -->
+            <div class="navbar-vertical-footer d-none d-lg-block">
+                <a href="../../pages/frontend/index.php" class="btn-back-site">
+                    <i class="fa fa-arrow-left"></i> Torna al sito
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <div class="page-wrapper">
+            <div class="container-xl">
+                <div class="page-header d-print-none">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="page-title">
+                                Benvenuto, <[admin_name]>!
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-body">
+                <div class="container-xl">
+                    <!-- Contenuto dinamico della pagina -->
+                    <[page_content]>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../skins/admin/tabler/dist/js/tabler.min.js" defer></script>
+</body>
+</html>

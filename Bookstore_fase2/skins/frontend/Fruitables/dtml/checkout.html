@@ -1,0 +1,99 @@
+<div class="row g-5">
+    <!-- Riepilogo ordine -->
+    <div class="col-md-12 col-lg-6 col-xl-7">
+        <h1 class="mb-4 fw-bold">Riepilogo Ordine</h1>
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Libro</th>
+                        <th scope="col" class="text-center">Prezzo</th>
+                        <th scope="col" class="text-center">Qtà</th>
+                        <th scope="col" class="text-center">Totale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <[order_items_html]>
+                    <tr class="table-light">
+                        <td colspan="3" class="text-end fw-bold">TOTALE DA PAGARE:</td>
+                        <td class="fw-bold text-primary fs-5">€<[grand_total]></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Form spedizione -->
+    <div class="col-md-12 col-lg-6 col-xl-5">
+        <div class="bg-light rounded p-5">
+            <h2 class="mb-4">Dati di Spedizione</h2>
+            <form action="checkout.php" method="POST" id="checkout-form">
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Via / Indirizzo</label>
+                    <input type="text" name="address_line1" class="form-control" required placeholder="es. Via Roma 12">
+                </div>
+                <div class="row g-3 mb-3">
+                    <div class="col-7">
+                        <label class="form-label fw-semibold">Città</label>
+                        <input type="text" name="city" class="form-control" required placeholder="es. Milano">
+                    </div>
+                    <div class="col-5">
+                        <label class="form-label fw-semibold">CAP</label>
+                        <input type="text" name="zip_code" class="form-control" required placeholder="es. 20100">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Paese</label>
+                    <input type="text" name="country" class="form-control" value="Italia">
+                </div>
+
+                <div class="border-top pt-4 mb-3">
+                    <h4 class="mb-3">Metodo di Pagamento</h4>
+                    <div class="bg-white p-3 rounded border mb-3">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="payment_method" id="credit_card" value="card" checked>
+                            <label class="form-check-label fw-bold" for="credit_card">
+                                <i class="far fa-credit-card me-2"></i>Carta di Credito / Debito
+                            </label>
+                        </div>
+
+                        <div id="card-details">
+                            <div class="mb-3">
+                                <label class="small text-muted">Intestatario Carta</label>
+                                <input type="text" name="card_name" class="form-control form-control-sm" placeholder="Nome Cognome">
+                            </div>
+                            <div class="mb-3">
+                                <label class="small text-muted">Numero Carta</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text" name="card_number" class="form-control" placeholder="0000 0000 0000 0000" maxlength="19">
+                                    <span class="input-group-text"><i class="fab fa-cc-visa"></i></span>
+                                </div>
+                            </div>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <label class="small text-muted">Scadenza</label>
+                                    <input type="text" name="card_expiry" class="form-control form-control-sm" placeholder="MM/AA" maxlength="5">
+                                </div>
+                                <div class="col-6">
+                                    <label class="small text-muted">CVV</label>
+                                    <input type="password" name="card_cvv" class="form-control form-control-sm" placeholder="123" maxlength="3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-top pt-3 mb-3">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input bg-primary border-0" id="terms" name="terms" required>
+                        <label class="form-check-label" for="terms">Accetto i termini e le condizioni</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary mt-2 rounded-pill">
+                    <i class="fa fa-check me-2"></i>Conferma Ordine
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

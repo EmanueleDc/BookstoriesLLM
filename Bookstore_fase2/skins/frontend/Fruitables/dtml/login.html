@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="bg-white shadow rounded p-4">
+                    <h2 class="mb-4">Accedi</h2>
+                    <[login_flash]>
+                    <form action="login.php" method="POST">
+                        <input type="hidden" name="action" value="login">
+                        <input type="hidden" name="redirect" value="<[redirect]>">
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" name="username" class="form-control" value="<[login_username]>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Accedi</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="bg-white shadow rounded p-4">
+                    <h2 class="mb-4">Registrati</h2>
+                    <[register_flash]>
+                    <form action="login.php" method="POST">
+                        <input type="hidden" name="action" value="register">
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" name="username" class="form-control" value="<[register_username]>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="email" class="form-control" value="<[register_email]>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nome</label>
+                            <input type="text" name="first_name" class="form-control" value="<[register_first_name]>">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Cognome</label>
+                            <input type="text" name="last_name" class="form-control" value="<[register_last_name]>">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Password</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Conferma password</label>
+                            <input type="password" name="confirm_password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-secondary">Registrati</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

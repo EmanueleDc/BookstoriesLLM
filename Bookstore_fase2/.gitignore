@@ -1,0 +1,4 @@
+# Ignora i file di configurazione con credenziali
+include/config.php
+idea/
+*.iml

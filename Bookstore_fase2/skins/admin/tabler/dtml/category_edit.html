@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title"><[form_title]></h3>
+    </div>
+
+    <[error_message_html]>
+
+    <div class="card-body">
+        <form action="category_edit.php<[query_string]>" method="POST">
+            <input type="hidden" name="id" value="<[category_id]>">
+
+            <div class="mb-3">
+                <label class="form-label required">Nome Categoria</label>
+                <input type="text" class="form-control" name="name" value="<[category_name]>" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Descrizione</label>
+                <textarea class="form-control" name="description" rows="3"><[category_description]></textarea>
+            </div>
+
+            <div class="form-footer text-end">
+                <a href="categories.php" class="btn btn-link">Annulla</a>
+                <button type="submit" class="btn btn-primary">Salva Categoria</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+<div class="row g-5 mb-5">
+    <!-- Copertina -->
+    <div class="col-lg-5">
+        <div class="border rounded shadow-sm p-4 text-center bg-white sticky-lg-top" style="top: 100px; z-index: 1;">
+            <img src="<[book_image]>" class="img-fluid rounded" alt="<[book_title]>" style="max-height: 500px; width: auto; object-fit: contain;">
+        </div>
+    </div>
+
+    <!-- Info Principali -->
+    <div class="col-lg-7">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                <li class="breadcrumb-item"><a href="shop.php">Shop</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><[book_category]></li>
+            </ol>
+        </nav>
+
+        <h1 class="display-5 fw-bold mb-2"><[book_title]></h1>
+        <p class="fs-4 text-primary mb-4">di <span class="fw-bold"><[book_author]></span></p>
+
+        <div class="d-flex align-items-center gap-3 mb-4">
+            <h2 class="display-6 fw-bold text-dark mb-0">€ <[book_price]></h2>
+            <[stock_badge_html]>
+        </div>
+
+        <div class="bg-light p-4 rounded-3 mb-4">
+            <h5 class="fw-bold mb-3"><i class="fas fa-shopping-cart me-2"></i>Acquista ora</h5>
+            <[cart_form_html]>
+            <p class="small text-muted mb-0"><i class="fas fa-info-circle me-1"></i> Spedizione gratuita per ordini superiori a €29.</p>
+        </div>
+
+        <!-- Mini specs row -->
+        <div class="row g-3 mb-5">
+            <div class="col-sm-4">
+                <div class="border rounded p-3 text-center h-100">
+                    <span class="text-muted d-block small text-uppercase">ISBN</span>
+                    <span class="fw-bold"><[book_isbn]></span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="border rounded p-3 text-center h-100">
+                    <span class="text-muted d-block small text-uppercase">Anno</span>
+                    <span class="fw-bold"><[book_year]></span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="border rounded p-3 text-center h-100">
+                    <span class="text-muted d-block small text-uppercase">Editore</span>
+                    <span class="fw-bold"><[book_publisher]></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Descrizione section -->
+        <div class="description-container py-4 border-top">
+            <h4 class="fw-bold mb-4">Descrizione e Trama</h4>
+            <div class="book-description-text lh-lg text-secondary" style="font-size: 1.1rem; text-align: justify;">
+                <[book_description]>
+            </div>
+        </div>
+
+        <div class="mt-5 pt-4 border-top">
+            <a href="shop.php" class="btn btn-link text-secondary p-0">
+                <i class="fa fa-arrow-left me-2"></i>Torna allo shop
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .book-description-text {
+        max-width: 650px; /* Limita la larghezza per una lettura ottimale */
+        line-height: 1.8;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    .breadcrumb-item a {
+        color: var(--bs-secondary);
+        text-decoration: none;
+    }
+    .breadcrumb-item.active {
+        color: var(--bs-primary);
+    }
+</style>
+
+<script>
+function changeQty(delta) {
+    const input = document.getElementById('book-qty');
+    let val = parseInt(input.value) + delta;
+    const max = parseInt(input.getAttribute('data-max'));
+    if (val < 1) val = 1;
+    if (val > max) val = max;
+    input.value = val;
+}
+</script>
